@@ -162,11 +162,6 @@ endif
 ifeq ($(CIRCUITPY_USB_MSC),1)
 USB_DEVICES += MSC
 endif
-ifeq ($(CIRCUITPY_USB_CDC),1)
-# Inform TinyUSB there are two CDC devices.
-CFLAGS += -DCFG_TUD_CDC=2
-USB_DEVICES += CDC2
-endif
 ifeq ($(CIRCUITPY_USB_VENDOR),1)
 USB_DEVICES += VENDOR
 endif
