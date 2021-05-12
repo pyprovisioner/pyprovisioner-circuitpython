@@ -34,19 +34,11 @@
 #include "shared-bindings/usb_cdc/Serial.h"
 #include "tusb.h"
 
-#if CFG_TUD_CDC != 2
-#error CFG_TUD_CDC must be exactly 2
-#endif
-
 static usb_cdc_serial_obj_t serial_objs[CFG_TUD_CDC] = {
     {   .base.type = &usb_cdc_serial_type,
         .timeout = -1.0f,
         .write_timeout = -1.0f,
-        .idx = 0,}, {
-        .base.type = &usb_cdc_serial_type,
-        .timeout = -1.0f,
-        .write_timeout = -1.0f,
-        .idx = 1,
+        .idx = 0,}
     }
 };
 
@@ -55,6 +47,5 @@ const mp_rom_obj_tuple_t usb_cdc_serials_tuple = {
     .len = CFG_TUD_CDC,
     .items = {
         &serial_objs[0],
-        &serial_objs[1],
     },
 };
