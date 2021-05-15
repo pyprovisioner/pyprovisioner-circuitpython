@@ -27,6 +27,11 @@ CircuitPython is based on `MicroPython <https://micropython.org>`_. See
 `Adafruit <https://adafruit.com>`_ and is available on their educational development boards. Please
 support both MicroPython and Adafruit.
 
+Unofficial Fork
+------------------
+
+This repository contains an unofficial fork of CircuitPython for the PyProvisioner project. All modifications have been applied to the 6.2.x branch. This fork is not supported by Adafruit.
+
 Get CircuitPython
 ------------------
 
