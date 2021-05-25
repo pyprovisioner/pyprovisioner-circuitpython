@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-04 12:55-0600\n"
-"PO-Revision-Date: 2021-05-10 11:33+0000\n"
+"PO-Revision-Date: 2021-05-22 17:58+0000\n"
 "Last-Translator: Jonny Bergdahl <jonny@bergdahl.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -723,16 +723,8 @@ msgid "CircuitPython core code crashed hard. Whoops!\n"
 msgstr "CircuitPython kärnkod kraschade hårt. Hoppsan!\n"
 
 #: supervisor/shared/safe_mode.c
-msgid ""
-"CircuitPython is in safe mode because you pressed the reset button during "
-"boot. Press again to exit safe mode.\n"
-msgstr ""
-"CircuitPython är i säkert läge eftersom du tryckte på återställningsknappen "
-"under start. Tryck igen för att lämna säkert läge.\n"
-
-#: supervisor/shared/safe_mode.c
-msgid "CircuitPython was unable to allocate the heap.\n"
-msgstr "CircuitPython kunde inte allokera heap.\n"
+msgid "CircuitPython was unable to allocate the heap."
+msgstr "CircuitPython kunde inte allokera heap."
 
 #: shared-module/bitbangio/SPI.c
 msgid "Clock pin init failed."
@@ -862,6 +854,10 @@ msgstr "Datasegmentet måste följa fmt-segmentet"
 #: ports/nrf/common-hal/_bleio/Adapter.c
 msgid "Data too large for advertisement packet"
 msgstr "Data för stor för annonseringspaket"
+
+#: ports/stm/common-hal/alarm/pin/PinAlarm.c
+msgid "Deep sleep pins must use a rising edge with pulldown"
+msgstr "Deep sleep-pinnar måste använda en stigande flank med pulldown"
 
 #: shared-bindings/audiobusio/PDMIn.c
 msgid "Destination capacity is smaller than destination_length."
@@ -1233,6 +1229,10 @@ msgstr "Ogiltigt ADC-enhetsvärde"
 #: ports/esp32s2/common-hal/wifi/Radio.c
 msgid "Invalid AuthMode"
 msgstr "Ogiltig AuthMode"
+
+#: ports/nrf/common-hal/_bleio/__init__.c
+msgid "Invalid BLE parameter"
+msgstr "Ogiltig BLE-parameter"
 
 #: shared-module/displayio/OnDiskBitmap.c
 msgid "Invalid BMP file"
@@ -1656,10 +1656,6 @@ msgstr "Inte ansluten"
 msgid "Not playing"
 msgstr "Ingen uppspelning"
 
-#: main.c
-msgid "Not running saved code.\n"
-msgstr "Kör inte sparad kod.\n"
-
 #: shared-bindings/_bleio/__init__.c
 msgid "Not settable"
 msgstr "Går inte sätta"
@@ -1695,6 +1691,10 @@ msgid ""
 msgstr ""
 "Endast Windows-format, okomprimerad BMP stöds: given headerstorlek är %d"
 
+#: ports/stm/common-hal/alarm/pin/PinAlarm.c
+msgid "Only edge detection is available on this hardware"
+msgstr "Endast kantdetektering är tillgänglig för denna hårdvara"
+
 #: shared-module/displayio/OnDiskBitmap.c
 #, c-format
 msgid ""
@@ -1710,6 +1710,7 @@ msgstr "Endast ett TouchAlarm kan ställas in för djupsömn."
 
 #: ports/esp32s2/common-hal/alarm/time/TimeAlarm.c
 #: ports/nrf/common-hal/alarm/time/TimeAlarm.c
+#: ports/stm/common-hal/alarm/time/TimeAlarm.c
 msgid "Only one alarm.time alarm can be set."
 msgstr "Endast ett alarm.time kan ställas in."
 
@@ -1718,8 +1719,8 @@ msgid "Only one color can be transparent at a time"
 msgstr "Bara en färg kan vara genomskinlig i taget"
 
 #: shared-bindings/ipaddress/__init__.c
-msgid "Only raw int supported for ip"
-msgstr "Endast raw int stöds för ip"
+msgid "Only raw int or string supported for ip"
+msgstr "Enbart int eller string stöds för ip"
 
 #: ports/esp32s2/bindings/espidf/__init__.c ports/esp32s2/esp_error.c
 msgid "Operation or feature not supported"
@@ -1787,6 +1788,10 @@ msgstr "Periferi i bruk"
 msgid "Permission denied"
 msgstr "Åtkomst nekad"
 
+#: ports/stm/common-hal/alarm/pin/PinAlarm.c
+msgid "Pin cannot wake from Deep Sleep"
+msgstr "Pinnen kan inte väcka från djup sömn"
+
 #: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 msgid "Pin count must be at least 1"
 msgstr "Antalet pinnar måste vara minst 1"
@@ -1805,6 +1810,11 @@ msgstr "Antal pinnar för stort"
 msgid "Pin does not have ADC capabilities"
 msgstr "Pinnen har inte ADC-funktionalitet"
 
+#: ports/stm/common-hal/alarm/pin/PinAlarm.c
+#: ports/stm/common-hal/pulseio/PulseIn.c
+msgid "Pin interrupt already in use"
+msgstr "Pinnavbrott används redan"
+
 #: shared-bindings/adafruit_bus_device/SPIDevice.c
 #: shared-bindings/digitalio/DigitalInOut.c
 msgid "Pin is input only"
@@ -1817,10 +1827,6 @@ msgstr "Pinne måste vara på PWM-kanal B"
 #: ports/atmel-samd/common-hal/countio/Counter.c
 msgid "Pin must support hardware interrupts"
 msgstr "Pinnen måste stödja hårdvaruavbrott"
-
-#: ports/stm/common-hal/pulseio/PulseIn.c
-msgid "Pin number already reserved by EXTI"
-msgstr "PInn-nummer redan reserverat av EXTI"
 
 #: shared-bindings/rgbmatrix/RGBMatrix.c
 #, c-format
@@ -1988,8 +1994,8 @@ msgid "Row entry must be digitalio.DigitalInOut"
 msgstr "Radvärdet måste vara digitalio.DigitalInOut"
 
 #: main.c
-msgid "Running in safe mode! "
-msgstr "Kör i säkert läge! "
+msgid "Running in safe mode! Not running saved code.\n"
+msgstr "Kör i säkert läge! Sparad kod körs inte.\n"
 
 #: shared-module/sdcardio/SDCard.c
 msgid "SD card CSD format not supported"
@@ -2051,6 +2057,10 @@ msgstr "Sido-setets antal pinnar måste vara mellan 1 och 5"
 msgid "Size not supported"
 msgstr "Storleken stöds inte"
 
+#: ports/stm/common-hal/alarm/SleepMemory.c
+msgid "Sleep Memory not available"
+msgstr "Sömnminne inte tillgängligt"
+
 #: shared-bindings/alarm/SleepMemory.c shared-bindings/nvm/ByteArray.c
 msgid "Slice and value different lengths."
 msgstr "Slice och värde har olika längd."
@@ -2109,18 +2119,18 @@ msgstr "Temperaturavläsning tog för lång tid"
 #: supervisor/shared/safe_mode.c
 msgid ""
 "The CircuitPython heap was corrupted because the stack was too small.\n"
-"Please increase the stack size if you know how, or if not:"
+"Increase the stack size if you know how. If not:"
 msgstr ""
-"CircuitPythons heap blev korrupt eftersom stacken var för liten.\n"
+"CircuitPython-heapen blev korrupt eftersom stacken är för liten.\n"
 "Öka stackstorleken om du vet hur, eller om inte:"
 
 #: supervisor/shared/safe_mode.c
 msgid ""
 "The `microcontroller` module was used to boot into safe mode. Press reset to "
-"exit safe mode.\n"
+"exit safe mode."
 msgstr ""
-"Modulen \"microkontroller\" användes för att starta i säkert läge. Tryck på "
-"reset för att lämna säkert läge.\n"
+"Modulen `microcontroller` användes för att starta upp i felsäkert läge. "
+"Tryck på reset för att avsluta felsäkert läget."
 
 #: shared-bindings/rgbmatrix/RGBMatrix.c
 msgid "The length of rgb_pins must be 6, 12, 18, 24, or 30"
@@ -2130,12 +2140,12 @@ msgstr "Längden på rgb_pins vara 6, 12, 18, 24 eller 30"
 msgid ""
 "The microcontroller's power dipped. Make sure your power supply provides\n"
 "enough power for the whole circuit and press reset (after ejecting "
-"CIRCUITPY).\n"
+"CIRCUITPY)."
 msgstr ""
-"Mikrokontrollerns matningsspänning droppade. Se till att strömförsörjningen "
+"Mikrokontrollerns matningsspänning sjönk. Se till att strömförsörjningen "
 "ger\n"
 "tillräckligt med ström för hela kretsen och tryck på reset (efter utmatning "
-"av CIRCUITPY).\n"
+"av CIRCUITPY)."
 
 #: shared-module/audiomixer/MixerVoice.c
 msgid "The sample's bits_per_sample does not match the mixer's"
@@ -2199,6 +2209,10 @@ msgstr "För många displayer"
 msgid "Total data to write is larger than %q"
 msgstr "Totala data att skriva är större än %q"
 
+#: ports/stm/common-hal/alarm/touch/TouchAlarm.c
+msgid "Touch alarms not available"
+msgstr "Touchalarm är inte tillgängligt"
+
 #: py/obj.c
 msgid "Traceback (most recent call last):\n"
 msgstr "Traceback (senaste anrop):\n"
@@ -2228,12 +2242,8 @@ msgid "UART write error"
 msgstr "UART skrivfel"
 
 #: shared-module/usb_hid/Device.c
-msgid "USB Busy"
-msgstr "USB upptagen"
-
-#: shared-module/usb_hid/Device.c
-msgid "USB Error"
-msgstr "USB-fel"
+msgid "USB busy"
+msgstr "USB upptaget"
 
 #: supervisor/shared/safe_mode.c
 msgid "USB devices need more endpoints than are available."
@@ -2242,6 +2252,10 @@ msgstr "USB-enheter behöver fler slutpunkter än vad som är tillgängligt."
 #: supervisor/shared/safe_mode.c
 msgid "USB devices specify too many interface names."
 msgstr "USB-enheter anger för många gränssnittsnamn."
+
+#: shared-module/usb_hid/Device.c
+msgid "USB error"
+msgstr "USB-fel"
 
 #: shared-bindings/_bleio/UUID.c
 msgid "UUID integer value must be 0-0xffff"
@@ -2352,7 +2366,7 @@ msgstr "Busstyp för display stöds inte"
 msgid "Unsupported format"
 msgstr "Formatet stöds inte"
 
-#: ports/raspberrypi/common-hal/pulseio/PulseOut.c py/moduerrno.c
+#: py/moduerrno.c
 msgid "Unsupported operation"
 msgstr "Åtgärd som inte stöds"
 
@@ -2436,8 +2450,15 @@ msgid "Writes not supported on Characteristic"
 msgstr "Skrivning stöds inte på karaktäristik"
 
 #: supervisor/shared/safe_mode.c
-msgid "You are in safe mode: something unanticipated happened.\n"
-msgstr "Du är i säkert läge: något öväntat hände.\n"
+msgid "You are in safe mode because:\n"
+msgstr "Du är i felsäkert läge eftersom:\n"
+
+#: supervisor/shared/safe_mode.c
+msgid ""
+"You pressed the reset button during boot. Press again to exit safe mode."
+msgstr ""
+"Du tryckte på resetknappen under uppstarten. Tryck igen för att avsluta "
+"felsäkert läge."
 
 #: supervisor/shared/safe_mode.c
 msgid "You requested starting safe mode by "
@@ -3539,6 +3560,10 @@ msgstr "namnet '%q' är inte definierat"
 msgid "name not defined"
 msgstr "namn inte definierat"
 
+#: py/asmthumb.c
+msgid "native method too big"
+msgstr "inbyggd metod för stor"
+
 #: py/emitnative.c
 msgid "native yield"
 msgstr "native yield"
@@ -3579,6 +3604,10 @@ msgstr "ingen bindning för ickelokal hittad"
 #: shared-module/msgpack/__init__.c
 msgid "no default packer"
 msgstr "ingen standardpackare"
+
+#: extmod/modurandom.c
+msgid "no default seed"
+msgstr "inget standard seed"
 
 #: py/builtinimport.c
 msgid "no module named '%q'"
@@ -4151,6 +4180,10 @@ msgstr "för många dimensioner"
 msgid "too many indices"
 msgstr "för många index"
 
+#: py/asmthumb.c
+msgid "too many locals for native method"
+msgstr "för många locals för nativ metod"
+
 #: py/runtime.c
 #, c-format
 msgid "too many values to unpack (expected %d)"
@@ -4383,6 +4416,58 @@ msgstr "zi måste vara av typ float"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi måste vara i formen (n_section, 2)"
+
+#~ msgid "Only raw int supported for ip"
+#~ msgstr "Endast raw int stöds för ip"
+
+#~ msgid ""
+#~ "CircuitPython is in safe mode because you pressed the reset button during "
+#~ "boot. Press again to exit safe mode.\n"
+#~ msgstr ""
+#~ "CircuitPython är i säkert läge eftersom du tryckte på "
+#~ "återställningsknappen under start. Tryck igen för att lämna säkert läge.\n"
+
+#~ msgid "Not running saved code.\n"
+#~ msgstr "Kör inte sparad kod.\n"
+
+#~ msgid "Running in safe mode! "
+#~ msgstr "Kör i säkert läge! "
+
+#~ msgid ""
+#~ "The CircuitPython heap was corrupted because the stack was too small.\n"
+#~ "Please increase the stack size if you know how, or if not:"
+#~ msgstr ""
+#~ "CircuitPythons heap blev korrupt eftersom stacken var för liten.\n"
+#~ "Öka stackstorleken om du vet hur, eller om inte:"
+
+#~ msgid ""
+#~ "The `microcontroller` module was used to boot into safe mode. Press reset "
+#~ "to exit safe mode.\n"
+#~ msgstr ""
+#~ "Modulen \"microkontroller\" användes för att starta i säkert läge. Tryck "
+#~ "på reset för att lämna säkert läge.\n"
+
+#~ msgid ""
+#~ "The microcontroller's power dipped. Make sure your power supply provides\n"
+#~ "enough power for the whole circuit and press reset (after ejecting "
+#~ "CIRCUITPY).\n"
+#~ msgstr ""
+#~ "Mikrokontrollerns matningsspänning droppade. Se till att "
+#~ "strömförsörjningen ger\n"
+#~ "tillräckligt med ström för hela kretsen och tryck på reset (efter "
+#~ "utmatning av CIRCUITPY).\n"
+
+#~ msgid "You are in safe mode: something unanticipated happened.\n"
+#~ msgstr "Du är i säkert läge: något öväntat hände.\n"
+
+#~ msgid "Pin number already reserved by EXTI"
+#~ msgstr "PInn-nummer redan reserverat av EXTI"
+
+#~ msgid "USB Busy"
+#~ msgstr "USB upptagen"
+
+#~ msgid "USB Error"
+#~ msgstr "USB-fel"
 
 #~ msgid "%q indices must be integers, not %q"
 #~ msgstr "%q index måste vara heltal, inte %q"
@@ -4754,9 +4839,6 @@ msgstr "zi måste vara i formen (n_section, 2)"
 
 #~ msgid "Running in safe mode! Auto-reload is off.\n"
 #~ msgstr "Kör i säkert läge! Autoladdning är avstängd.\n"
-
-#~ msgid "Running in safe mode! Not running saved code.\n"
-#~ msgstr "Kör i säkert läge! Sparad kod körs inte.\n"
 
 #~ msgid "__init__() should return None, not '%s'"
 #~ msgstr "__init __ () ska returnera None, inte '%s'"

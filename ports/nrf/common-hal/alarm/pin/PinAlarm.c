@@ -50,7 +50,7 @@ static bool pins_configured = false;
 extern uint32_t reset_reason_saved;
 extern void dbg_dump_GPIOregs(void);
 
-void common_hal_alarm_pin_pinalarm_construct(alarm_pin_pinalarm_obj_t *self, mcu_pin_obj_t *pin, bool value, bool edge, bool pull) {
+void common_hal_alarm_pin_pinalarm_construct(alarm_pin_pinalarm_obj_t *self, const mcu_pin_obj_t *pin, bool value, bool edge, bool pull) {
     if (edge) {
         mp_raise_ValueError(translate("Cannot wake on pin edge. Only level."));
     }
@@ -62,7 +62,7 @@ void common_hal_alarm_pin_pinalarm_construct(alarm_pin_pinalarm_obj_t *self, mcu
     self->pull = pull;
 }
 
-mcu_pin_obj_t *common_hal_alarm_pin_pinalarm_get_pin(alarm_pin_pinalarm_obj_t *self) {
+const mcu_pin_obj_t *common_hal_alarm_pin_pinalarm_get_pin(alarm_pin_pinalarm_obj_t *self) {
     return self->pin;
 }
 
@@ -85,12 +85,12 @@ static void pinalarm_gpiote_handler(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t
     sleepmem_wakeup_pin = pin & 0xFF;
 }
 
-bool alarm_pin_pinalarm_woke_us_up(void) {
+bool alarm_pin_pinalarm_woke_this_cycle(void) {
     return sleepmem_wakeup_event == SLEEPMEM_WAKEUP_BY_PIN &&
            sleepmem_wakeup_pin != WAKEUP_PIN_UNDEF;
 }
 
-mp_obj_t alarm_pin_pinalarm_get_wakeup_alarm(size_t n_alarms, const mp_obj_t *alarms) {
+mp_obj_t alarm_pin_pinalarm_find_triggered_alarm(size_t n_alarms, const mp_obj_t *alarms) {
     // First, check to see if we match any given alarms.
     for (size_t i = 0; i < n_alarms; i++) {
         if (!mp_obj_is_type(alarms[i], &alarm_pin_pinalarm_type)) {
@@ -101,6 +101,10 @@ mp_obj_t alarm_pin_pinalarm_get_wakeup_alarm(size_t n_alarms, const mp_obj_t *al
             return alarms[i];
         }
     }
+    return mp_const_none;
+}
+
+mp_obj_t alarm_pin_pinalarm_create_wakeup_alarm(void) {
     alarm_pin_pinalarm_obj_t *alarm = m_new_obj(alarm_pin_pinalarm_obj_t);
     alarm->base.type = &alarm_pin_pinalarm_type;
     alarm->pin = NULL;

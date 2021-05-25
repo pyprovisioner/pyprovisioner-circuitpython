@@ -73,16 +73,16 @@ jobs:
       run: |
         make -C ports/unix VARIANT=coverage -j2
     - name: Test all
-      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests -j1
+      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests.py -j1
       working-directory: tests
     - name: Native Tests
-      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests -j1 --emit native
+      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests.py -j1 --emit native
       working-directory: tests
     - name: mpy Tests
-      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests -j1 --mpy-cross-flags='-mcache-lookup-bc' --via-mpy -d basics float micropython
+      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests.py -j1 --mpy-cross-flags='-mcache-lookup-bc' --via-mpy -d basics float micropython
       working-directory: tests
     - name: Native mpy Tests
-      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests -j1 --mpy-cross-flags='-mcache-lookup-bc' --via-mpy --emit native -d basics float micropython
+      run: MICROPY_CPYTHON3=python3.8 MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests.py -j1 --mpy-cross-flags='-mcache-lookup-bc' --via-mpy --emit native -d basics float micropython
       working-directory: tests
     - name: Build mpy-cross.static-aarch64
       run: make -C mpy-cross -j2 -f Makefile.static-aarch64
@@ -176,8 +176,10 @@ jobs:
         - "TG-Watch"
         - "adafruit_feather_rp2040"
         - "adafruit_itsybitsy_rp2040"
+        - "adafruit_macropad_rp2040"
         - "adafruit_neokey_trinkey_m0"
         - "adafruit_proxlight_trinkey_m0"
+        - "adafruit_qt2040_trinkey"
         - "adafruit_qtpy_rp2040"
         - "adafruit_rotary_trinkey_m0"
         - "adafruit_slide_trinkey_m0"
@@ -188,6 +190,7 @@ jobs:
         - "arduino_mkrzero"
         - "arduino_nano_33_ble"
         - "arduino_nano_33_iot"
+        - "arduino_nano_rp2040_connect"
         - "arduino_zero"
         - "bast_pro_mini_m0"
         - "bastble"
